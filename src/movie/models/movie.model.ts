@@ -26,5 +26,5 @@ export class Movie extends Model {
     @Column
     updatedAt: Date;
 }
-
+//data
 
