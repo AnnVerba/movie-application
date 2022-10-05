@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import { Column, CreatedAt, DataType,   Model, Table, UpdatedAt } from 'sequelize-typescript';
 
 
-@Table({ tableName: 'movies', createdAt: false, updatedAt: false  })
+@Table({ tableName: 'MovieCatalog', createdAt: false, updatedAt: false  })
 export class Movie extends Model {
 
 

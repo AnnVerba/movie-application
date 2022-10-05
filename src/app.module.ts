@@ -16,7 +16,9 @@ dotenv.config({path: './.env/.env'})
     dialect: "postgres",
     protocol: 'postgres',
     models: [Movie],
-
+    sync:{force:true,
+      alter:true
+    }
 
   }), MovieModule],
 
