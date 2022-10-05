@@ -18,13 +18,13 @@ export class Movie extends Model {
     @Column({ type: DataType.FLOAT, allowNull: true })
     rating: number;
 
-    // @CreatedAt
-    // @Column
-    // createdAt: Date;
-    //
-    // @UpdatedAt
-    // @Column
-    // updatedAt: Date;
+    @CreatedAt
+    @Column
+    createdAt: Date;
+
+    @UpdatedAt
+    @Column
+    updatedAt: Date;
 }
 
 
