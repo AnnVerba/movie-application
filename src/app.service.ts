@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Movie } from '../movie-src/models/movie.model';
+import { Movie } from './movie/models/movie.model';
 import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()

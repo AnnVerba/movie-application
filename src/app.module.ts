@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { MovieController } from './movie.controller';
+import { MovieController } from './movie/movie.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Movie } from '../movie-src/models/movie.model';
+import { Movie } from './movie/models/movie.model';
 import * as dotenv from 'dotenv'
-import {MovieModule} from "../movie-src/movie.module";
+import {MovieModule} from "./movie/movie.module";
 dotenv.config({path: './.env/.env'})
 
 @Module({

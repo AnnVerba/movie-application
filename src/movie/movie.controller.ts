@@ -1,8 +1,8 @@
 import {Controller, Get, Post, Body, Put, Res, Param, Delete, HttpStatus, Inject} from '@nestjs/common';
-import { AppService } from './app.service';
+import { AppService } from '../app.service';
 import { Response } from 'express';
 
-import {Movie} from "../movie-src/models/movie.model";
+import {Movie} from "./models/movie.model";
 
 @Controller()
 export class MovieController {
