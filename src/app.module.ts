@@ -4,8 +4,9 @@ import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Movie } from './movie/models/movie.model';
 import * as dotenv from 'dotenv'
-import {MovieModule} from "./movie/movie.module";
 dotenv.config({path: './.env/.env'})
+
+import {MovieModule} from "./movie/movie.module";
 
 @Module({
   imports: [ SequelizeModule.forRoot({
@@ -15,13 +16,14 @@ dotenv.config({path: './.env/.env'})
     host: 'localhost',
     dialect: "postgres",
     protocol: 'postgres',
+
     models: [Movie],
-    sync:{force:true,
-      alter:true
-    }
+
 
   }), MovieModule],
 
 
 })
-export class AppModule {}
+export class AppModule {
+
+}

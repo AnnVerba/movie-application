@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import { Column, CreatedAt, DataType,   Model, Table, UpdatedAt } from 'sequelize-typescript';
 
 
-@Table({ tableName: 'MovieCatalog', createdAt: false, updatedAt: false  })
+@Table({ tableName: 'movies', createdAt: false, updatedAt: false  })
 export class Movie extends Model {
 
 
@@ -16,6 +16,9 @@ export class Movie extends Model {
 
     @Column({ type: DataType.STRING, allowNull: false })
     time: string;
+
+    @Column({ type: DataType.STRING, allowNull: false })
+    name: string;
 
     @Column({ type: DataType.FLOAT, allowNull: true })
     rating: number;

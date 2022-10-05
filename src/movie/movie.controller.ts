@@ -4,7 +4,7 @@ import { Response } from 'express';
 
 import {Movie} from "./models/movie.model";
 
-@Controller()
+@Controller('movie')
 export class MovieController {
 
   constructor(
@@ -14,14 +14,17 @@ export class MovieController {
   ) {}
 
   @Post()
-    createMovie(@Body() body: any , @Res()res: Response): Promise<Movie> {
-      if (!body||!body.name||!body.time) {
-          res.status(HttpStatus.BAD_REQUEST)
+    async createMovie(@Body() body: any , @Res()res: Response): Promise<Movie> {
+      if (!body) {
+          console.log(body.name)
+          console.log(body)
+          res.status(HttpStatus.BAD_REQUEST).send("no movie")
           return null
       }
     try {
-
-        return this.appService.createRow(body)
+const movie=await this.appService.createRow(body)
+        res.status(HttpStatus.OK).json([movie])
+        return movie
 
     } catch (e) {
         res.status(HttpStatus.BAD_REQUEST).json([])
@@ -32,12 +35,12 @@ export class MovieController {
 
 
   @Put(':id')
-  updateMovie(@Body() body: any,  @Param('id') id: number, @Res()res: Response)  {
+ async updateMovie(@Body() body: any,  @Param('id') id: number, @Res()res: Response)  {
 
 
 
     try {
-      const movie =  this.appService.upDateRow(body, id)
+      const movie =  await this.appService.upDateRow(body, id)
 
       return  res.status(HttpStatus.OK).send(movie);
 
@@ -49,9 +52,9 @@ export class MovieController {
   }
 
   @Delete(':id')
-    deleteMovie( @Res() res: Response,  @Param('id')id:number) : Promise<any>{
+    async deleteMovie( @Res() res: Response,  @Param('id')id:number) : Promise<any>{
     try{
-      return this.appService.deleteMovie(id)
+      return await this.appService.deleteMovie(id)
      //  res.status(HttpStatus.OK).json([movie]);
      // return
 
@@ -60,15 +63,14 @@ export class MovieController {
 
     }
 
-
   };
 
 
   @Get(':id')
-    getMovieById (@Res() res: Response,  @Param('id')id: number):Promise<Movie> {
+    async getMovieById (@Res() res: Response,  @Param('id')id: number):Promise<Movie> {
 
     try {
-      return this.appService.getMovieById(id);
+      return await this.appService.getMovieById(id);
 
     }
     catch (err) {
@@ -77,11 +79,13 @@ export class MovieController {
 
   }
 
-  @Get('movies')
-   getMovies(@Res() res: Response):Promise<Movie[]> {
+  @Get()
+   async getMovies(@Res() res: Response):Promise<Movie[]> {
     try {
-      return this.appService.getAllMovies()
+        const movies= await this.appService.getAllMovies()
+       res.status(HttpStatus.OK).send(movies)
 
+return movies
 
 
     } catch (e) {
