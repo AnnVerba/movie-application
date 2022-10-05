@@ -13,7 +13,7 @@ export class MovieController {
 
   ) {}
 
-  @Post()
+  @Post('create')
     async createMovie(@Body() body: any , @Res()res: Response): Promise<Movie> {
       if (!body) {
           console.log(body.name)
@@ -23,11 +23,11 @@ export class MovieController {
       }
     try {
 const movie=await this.appService.createRow(body)
-        res.status(HttpStatus.OK).json([movie])
+        res.status(HttpStatus.OK).send("movie created")
         return movie
 
     } catch (e) {
-        res.status(HttpStatus.BAD_REQUEST).json([])
+        res.status(HttpStatus.BAD_REQUEST).json([e])
 
     }
 

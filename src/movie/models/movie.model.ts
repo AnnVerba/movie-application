@@ -6,13 +6,8 @@ import { Column, CreatedAt, DataType,   Model, Table, UpdatedAt } from 'sequeliz
 export class Movie extends Model {
 
 
-    @Column({ type: DataType.INTEGER, unique: true, allowNull: false ,primaryKey: true })
-    id: {
-        type: typeof Sequelize.UUID,
-        defaultValue: typeof Sequelize.UUIDV4,
-        allowNull: false,
-        primaryKey: true
-    }
+    @Column({ type: DataType.INTEGER, unique: true, allowNull: false , primaryKey: true, autoIncrement:true })
+    id: number
 
     @Column({ type: DataType.STRING, allowNull: false })
     time: string;
